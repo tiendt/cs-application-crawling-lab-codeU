@@ -54,9 +54,7 @@ public class WikiCrawler {
 	* @throws IOException
 	*/
 	public String crawl(boolean testing) throws IOException {
-		if (queue.isEmpty()) {
-			return null;
-		}
+
 		String url = queue.poll();
 
 		if (!testing) {
@@ -88,7 +86,7 @@ public class WikiCrawler {
 			Elements links = paragraph.select ("a[href]");
 			for (Element link: links) {
 				String url = link.attr("href");
-				
+
 				String URL = "https://en.wikipedia.org" + url;
 				if (URL.contains ("/wiki/")) {
 					queue.offer(URL);
